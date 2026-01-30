@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إنشاء حساب</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            direction: rtl;
+        }
+
+        .register-box {
+            background-color: white;
+            width: 380px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .extra {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .extra a {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-box">
+        <h2>إنشاء حساب</h2>
+
+        <form onsubmit="return registerUser()">
+            <label>اسم المستخدم</label>
+            <input type="text" id="username" placeholder="اختر اسم مستخدم">
+
+            <label>البريد الإلكتروني</label>
+            <input type="email" id="email" placeholder="example@email.com">
+
+            <label>كلمة المرور</label>
+            <input type="password" id="password" placeholder="كلمة المرور">
+
+            <label>تأكيد كلمة المرور</label>
+            <input type="password" id="confirm" placeholder="أعد كتابة كلمة المرور">
+
+            <button type="submit">إنشاء الحساب</button>
+        </form>
+
+        <p class="success" id="successMsg">✅ تم إنشاء الحساب بنجاح</p>
+        <p class="error" id="errorMsg">❌ تأكد من تعبئة جميع الحقول</p>
+
+        <div class="extra">
+            <p>لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
+        </div>
+    </div>
+
+    <script>
+        function registerUser() {
+            var user = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var pass = document.getElementById("password").value;
+            var confirm = document.getElementById("confirm").value;
+
+            var success = document.getElementById("successMsg");
+            var error = document.getElementById("errorMsg");
+
+            if (user === "" || email === "" || pass === "" || confirm === "") {
+                error.style.display = "block";
+                success.style.display = "none";
+                return false;
+            }
+
+            if (pass !== confirm) {
+                error.innerHTML = "❌ كلمتا المرور غير متطابقتين";
+                error.style.display = "block";
+                success.style.display = "none";
+                return false;
+            }
+
+            error.style.display = "none";
+            success.style.display = "block";
+            return false;
+        }
+    </script>
+
+</body>
+</html>
